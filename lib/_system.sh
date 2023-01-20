@@ -15,8 +15,8 @@ system_create_user() {
   sleep 2
 
   sudo su - root <<EOF
-  useradd -m -p $(openssl passwd -crypt ${mysql_root_password}) -s /bin/bash -G sudo root
-  usermod -aG sudo root
+  useradd -m -p $(openssl passwd -crypt ${mysql_root_password}) -s /bin/bash -G sudo deploy
+  usermod -aG sudo deploy
 EOF
 
   sleep 2
@@ -35,8 +35,8 @@ system_git_clone() {
 
   sleep 2
 
-  sudo su - root <<EOF
-  git clone ${link_git} /root/${instancia_add}/
+  sudo su - deploy <<EOF
+  git clone ${link_git} /home/deploy/${instancia_add}/
 EOF
 
   sleep 2
@@ -49,7 +49,7 @@ EOF
 #######################################
 system_update() {
   print_banner
-  printf "${WHITE} 💻 Vamos atualizar o sistema Máxima Tecnologia...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Vamos atualizar o sistema Conecteup...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -71,7 +71,7 @@ EOF
 #######################################
 deletar_tudo() {
   print_banner
-  printf "${WHITE} 💻 Vamos deletar a Máxima Tecnologia...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Vamos deletar o Conecteup...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
@@ -93,8 +93,8 @@ EOF
 
 sleep 2
 
-sudo su - root <<EOF
- rm -rf /root/${empresa_delete}
+sudo su - deploy <<EOF
+ rm -rf /home/deploy/${empresa_delete}
  pm2 delete ${empresa_delete}-frontend ${empresa_delete}-backend
  pm2 save
 EOF
@@ -117,12 +117,12 @@ EOF
 #######################################
 configurar_bloqueio() {
   print_banner
-  printf "${WHITE} 💻 Vamos bloquear a Máxima Tecnologia...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Vamos bloquear o Conecteup...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
 
-sudo su - root <<EOF
+sudo su - deploy <<EOF
  pm2 stop ${empresa_bloquear}-backend
  pm2 save
 EOF
@@ -144,12 +144,12 @@ EOF
 #######################################
 configurar_desbloqueio() {
   print_banner
-  printf "${WHITE} 💻 Vamos Desbloquear a Máxima Tecnologia...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Vamos Desbloquear o Conecteup...${GRAY_LIGHT}"
   printf "\n\n"
 
   sleep 2
 
-sudo su - root <<EOF
+sudo su - deploy <<EOF
  pm2 start ${empresa_bloquear}-backend
  pm2 save
 EOF
@@ -170,7 +170,7 @@ EOF
 #######################################
 configurar_dominio() {
   print_banner
-  printf "${WHITE} 💻 Vamos Alterar os Dominios da Máxima Tecnologia...${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Vamos Alterar os Dominios do Conecteup...${GRAY_LIGHT}"
   printf "\n\n"
 
 sleep 2
@@ -184,10 +184,10 @@ EOF
 
 sleep 2
 
-  sudo su - root <<EOF
-  cd && cd /root/${empresa_dominio}/frontend
+  sudo su - deploy <<EOF
+  cd && cd /home/deploy/${empresa_dominio}/frontend
   sed -i "1c\REACT_APP_BACKEND_URL=https://${alter_backend_url}" .env
-  cd && cd /root/${empresa_dominio}/backend
+  cd && cd /home/deploy/${empresa_dominio}/backend
   sed -i "2c\BACKEND_URL=https://${alter_backend_url}" .env
   sed -i "3c\FRONTEND_URL=https://${alter_frontend_url}" .env 
 EOF

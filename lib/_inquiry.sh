@@ -3,7 +3,7 @@
 get_mysql_root_password() {
   
   print_banner
-  printf "${WHITE} 💻 Insira senha para o usuario Root e Banco de Dados (Não utilizar caracteres especiais):${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Insira senha para o usuario Deploy e Banco de Dados (Não utilizar caracteres especiais):${GRAY_LIGHT}"
   printf "\n\n"
   read -p "> " mysql_root_password
 }
@@ -11,7 +11,7 @@ get_mysql_root_password() {
 get_link_git() {
   
   print_banner
-  printf "${WHITE} 💻 Insira o link da sua instalação Máxima Tecnologia que deseja instalar:${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Insira o link da sua instalção Conecteup que deseja instalar:${GRAY_LIGHT}"
   printf "\n\n"
   read -p "> " link_git
 }
@@ -201,14 +201,14 @@ software_dominio() {
 inquiry_options() {
   
   print_banner
-  printf "${WHITE} 💻 Bem vindo(a) ao Gerenciador Máxima Tecnologia, Selecione abaixo a proxima ação!${GRAY_LIGHT}"
+  printf "${WHITE} 💻 Bem vindo(a) ao Gerenciador Conecteup, Selecione abaixo a proxima ação!${GRAY_LIGHT}"
   printf "\n\n"
-  printf "   [0] Instalar Máxima Tecnologia\n"
-  printf "   [1] Atualizar Máxima Tecnologia\n"
-  printf "   [2] Deletar Máxima Tecnologia\n"
-  printf "   [3] Bloquear Máxima Tecnologia\n"
-  printf "   [4] Desbloquear Máxima Tecnologia\n"
-  printf "   [5] Alter. dominio Máxima Tecnologia\n"
+  printf "   [0] Instalar Conecteup\n"
+  printf "   [1] Atualizar Conecteup\n"
+  printf "   [2] Deletar Conecteup\n"
+  printf "   [3] Bloquear Conecteup\n"
+  printf "   [4] Desbloquear Conecteup\n"
+  printf "   [5] Alter. dominio Conecteup\n"
   printf "\n"
   read -p "> " option
 
